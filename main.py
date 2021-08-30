@@ -1,34 +1,41 @@
 
 import time
+from typing import ItemsView
 from item import Item
 from item import inventory
-from item import shop_items
+from item import shop_items1
 
+# your money
 money = 10000
 
+def open_shop():
 
+    Item.buy_item()
 
-def add_item():
+def do_shit():
     
     # create an item here => Name of the item, description, and price as int
-    Item(name="Kiwi", desc="Kiwis are the best", price=100)
-    Item(name="Discord", desc="The whole discord company.", price=6969696969)
+    Item(name="Pizza", desc="Delicious pizza, yum!", price=25)
+    Item(name="Keyboard", desc="Mechanical keyboard with Outemu blue switches.", price=50)
+    
+    print("----------------------")
+    question = input("Do you wanna open your inventory? y/n: ")
 
-    q = input("Do you wanna open your inventory? y/n: ")
-
-
-    if q == "y":
+    if question == "y":
+        print("----------------------")
         print(inventory)
-        time.sleep(5)
         print("----------------------")
-        add_item()
+        do_shit()
 
-    elif q == "n":
-        Item.buy_item()
+    elif question == "n":
 
-    else:
+        shop_question = input("Do you wanna open the shop? y/n: ")
         print("----------------------")
-        add_item()
 
-add_item()
+        if shop_question == "y":
+            open_shop()
+        elif shop_question == "n":
+            do_shit()
+
+do_shit()
 
