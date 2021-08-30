@@ -21,13 +21,13 @@ price = ITEM_PRICE
 
 # Modding
 ## Giving yourself money
-If you want to give yourself some money, just change the **money** value.
+If you want to give yourself some money, just change the **money** value inside of **main.py**.
 ```py
 money = 0
 ```
 
 ## Adding jobs and changing job income
-By changing the **INCOME** and the **JOB_NAME** values, you can simply create, and add your own custom jobs.
+By changing the **INCOME** and the **JOB_NAME** values inside of **main.py**, you can simply create, and add your own custom jobs.
 ```py
 elif job == "JOB_NAME":
     income = INCOME
