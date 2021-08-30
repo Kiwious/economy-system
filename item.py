@@ -21,16 +21,17 @@ class Item:
     @classmethod
     def buy_item(cls):
         from main import money
+        print(shop_items1)
         question1 = input(f"What product do you wanna buy? \nYour available Money: {money}\n\n")
         print("----------------------")
-        print(shop_items1)
 
         if question1 in shop_items1:
             
             if cls.price >= money:
                 inventory.append(f"{cls.name}, {cls.desc}")
                 print(f"{cls.name} successfully bought!")
-        else: 
+                
+        elif question1 not in shop_items1: 
             print("Item not found!")
             print("----------------------")
 
