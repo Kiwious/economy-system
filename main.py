@@ -1,13 +1,24 @@
 import time
+from configparser import ConfigParser
+from configHandler import *
 
-shop_items=[f"Name: 'Dino', Info: 'A big dino', Price: '{str(10)}'",
-            f"Name: 'Sword', Info: 'A epic sword', Price: '{str(3)}'",
-            f"Name: 'Kiwi', Info: 'Kiwi yum', Price: '{str(50)}'"]
+file = "config.ini"
+config = ConfigParser()
+config.read(file)
+
+shop_items=[f"Name: '{item1_name}', Info: '{item1_info}', Price: '{str(item1_price)}'",
+            f"Name: '{item2_name}', Info: '{item2_info}', Price: '{str(item2_price)}'",
+            f"Name: '{item3_name}', Info: '{item3_info}', Price: '{str(item3_price)}'",
+            f"Name: '{item4_name}', Info: '{item4_info}', Price: '{str(item4_price)}'",
+            f"Name: '{item5_name}', Info: '{item5_info}', Price: '{str(item5_price)}'",
+            f"Name: '{item6_name}', Info: '{item6_info}', Price: '{str(item6_price)}'",
+            f"Name: '{item7_name}', Info: '{item7_info}', Price: '{str(item7_price)}'",
+            f"Name: '{item8_name}', Info: '{item8_info}', Price: '{str(item8_price)}'"]
 
 inventory = []
 jobs = ["Job: Programmer, Income: 100", "Job: YouTuber, Income: 200", "Job: Artist, Income: 300"]
 
-money = 0
+money = 999999
 
 def buy_item(Name):
     for item in shop_items:
@@ -77,3 +88,6 @@ def start():
         job_prompt()
 
 start()
+
+with open(file, "w") as configfile:
+    config.write(configfile)
