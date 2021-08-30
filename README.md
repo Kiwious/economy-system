@@ -1,7 +1,7 @@
 # Economy System
 
 # config.ini
-If you want to modify or change certain items, than the **config.ini** file is the file you are looking for. In this file, you can change:
+If you want to modify or change certain items, then the **config.ini** file is the file you are looking for. In this file, you can change:
 the **name, description** and **price** of an item.
 
 **Example:**
