@@ -1,21 +1,33 @@
 # Economy System
 
-## Adding Items
-Current Items are: Dino, Sword, and Kiwi. You can add/edit these items by just changing the **Name, Info** and **Price** values inside of the ' 's.
-```py
-shop_items=[f"Name: 'Dino', Info: 'A big dino', Price: '{str(10)}'",
-            f"Name: 'Sword', Info: 'A epic sword', Price: '{str(3)}'",
-            f"Name: 'Kiwi', Info: 'Kiwi yum', Price: '{str(50)}'"]
+# config.ini
+If you want to modify or change certain items, then the **config.ini** file is the file you are looking for. In this file, you can change:
+the **name, description** and **price** of an item.
+
+**Example:**
+```ini
+[item1]
+name = Dino
+description = A big Dino.
+price = 10
 ```
-            
+As you can see here, it is very easy to setup a new item. Please note that this code holds a maximum ammount of **8** Items. If you add more, the programm will eventually break, and will no longer work:
+```ini
+[item1-8]
+name = NAME
+description = ITEM_DESCIPTION
+price = ITEM_PRICE
+```
+
+# Modding
 ## Giving yourself money
-If you want to give yourself some money, just change the **money** value.
+If you want to give yourself some money, just change the **money** value inside of **main.py**.
 ```py
 money = 0
 ```
 
 ## Adding jobs and changing job income
-By changing the **INCOME** and the **JOB_NAME** values, you can simply create, and add your own custom jobs.
+By changing the **INCOME** and the **JOB_NAME** values inside of **main.py**, you can simply create, and add your own custom jobs.
 ```py
 elif job == "JOB_NAME":
     income = INCOME
@@ -28,6 +40,6 @@ your custom Job!
 ```py
 jobs = ["Job: Programmer, Income: 100", "Job: YouTuber, Income: 200", "Job: Artist, Income: 300"]
 ```
-
+# Saving
 ## Saving feature
 Please note that the saving-feature has not been added yet.
