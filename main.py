@@ -1,29 +1,32 @@
+from os import sep
 import time
 from configparser import ConfigParser
 from configHandler import *
+import bcolors
+from tabulate import tabulate
 
 file = "config.ini"
 config = ConfigParser()
 config.read(file)
 
-shop_items=[f"Name: '{item1_name}', Info: '{item1_info}', Price: '{str(item1_price)}'",
-            f"Name: '{item2_name}', Info: '{item2_info}', Price: '{str(item2_price)}'",
-            f"Name: '{item3_name}', Info: '{item3_info}', Price: '{str(item3_price)}'",
-            f"Name: '{item4_name}', Info: '{item4_info}', Price: '{str(item4_price)}'",
-            f"Name: '{item5_name}', Info: '{item5_info}', Price: '{str(item5_price)}'",
-            f"Name: '{item6_name}', Info: '{item6_info}', Price: '{str(item6_price)}'",
-            f"Name: '{item7_name}', Info: '{item7_info}', Price: '{str(item7_price)}'",
-            f"Name: '{item8_name}', Info: '{item8_info}', Price: '{str(item8_price)}'"]
+shop_items=[f"Name: {bcolors.bcolors.ENDC}'{item1_name}{bcolors.bcolors.BOLD}{bcolors.bcolors.ENDC}'{bcolors.bcolors.BOLD}, Info: {bcolors.bcolors.ENDC}'{item1_info}',{bcolors.bcolors.BOLD} Price: {bcolors.bcolors.ENDC}'{str(item1_price)}'\n",
+            f"Name: {bcolors.bcolors.ENDC}'{item2_name}{bcolors.bcolors.BOLD}{bcolors.bcolors.ENDC}'{bcolors.bcolors.BOLD}, Info: {bcolors.bcolors.ENDC}'{item2_info}',{bcolors.bcolors.BOLD} Price: {bcolors.bcolors.ENDC}'{str(item2_price)}'\n",
+            f"Name: {bcolors.bcolors.ENDC}'{item3_name}{bcolors.bcolors.BOLD}{bcolors.bcolors.ENDC}'{bcolors.bcolors.BOLD}, Info: {bcolors.bcolors.ENDC}'{item3_info}',{bcolors.bcolors.BOLD} Price: {bcolors.bcolors.ENDC}'{str(item3_price)}'\n",
+            f"Name: {bcolors.bcolors.ENDC}'{item4_name}{bcolors.bcolors.BOLD}{bcolors.bcolors.ENDC}'{bcolors.bcolors.BOLD}, Info: {bcolors.bcolors.ENDC}'{item4_info}',{bcolors.bcolors.BOLD} Price: {bcolors.bcolors.ENDC}'{str(item4_price)}'\n",
+            f"Name: {bcolors.bcolors.ENDC}'{item5_name}{bcolors.bcolors.BOLD}{bcolors.bcolors.ENDC}'{bcolors.bcolors.BOLD}, Info: {bcolors.bcolors.ENDC}'{item5_info}',{bcolors.bcolors.BOLD} Price: {bcolors.bcolors.ENDC}'{str(item5_price)}'\n",
+            f"Name: {bcolors.bcolors.ENDC}'{item6_name}{bcolors.bcolors.BOLD}{bcolors.bcolors.ENDC}'{bcolors.bcolors.BOLD}, Info: {bcolors.bcolors.ENDC}'{item6_info}',{bcolors.bcolors.BOLD} Price: {bcolors.bcolors.ENDC}'{str(item6_price)}'\n",
+            f"Name: {bcolors.bcolors.ENDC}'{item7_name}{bcolors.bcolors.BOLD}{bcolors.bcolors.ENDC}'{bcolors.bcolors.BOLD}, Info: {bcolors.bcolors.ENDC}'{item7_info}',{bcolors.bcolors.BOLD} Price: {bcolors.bcolors.ENDC}'{str(item7_price)}'\n",
+            f"Name: {bcolors.bcolors.ENDC}'{item8_name}{bcolors.bcolors.BOLD}{bcolors.bcolors.ENDC}'{bcolors.bcolors.BOLD}, Info: {bcolors.bcolors.ENDC}'{item8_info}',{bcolors.bcolors.BOLD} Price: {bcolors.bcolors.ENDC}'{str(item8_price)}'\n"]
 
+target = {39:None, 91:None, 93:None}
 inventory = []
 jobs = ["Job: Programmer, Income: 100", "Job: YouTuber, Income: 200", "Job: Artist, Income: 300"]
-
-money = 999999
+money = 1110
 
 def buy_item(Name):
     for item in shop_items:
         item=item.split("'")
-        if item[1] == Name:
+        if str(item[1]) == Name:
             global money
             if money >= int(item[5]):
                 inventory.append(item)
@@ -31,9 +34,8 @@ def buy_item(Name):
             else:
                 print("You don't have enough money!")
                 time.sleep(1)
-                print("Redirecting you back....")
-                time.sleep(1)
                 start()
+                
 
 def work(job):
     if job == "Programmer":
@@ -63,7 +65,8 @@ def job_prompt():
 
 def open_shop():
     print("----------------------------------------------------")
-    print(shop_items)
+    print(*shop_items, sep="'")
+
     print("----------------------------------------------------")
     item = input("What do you want to buy?: ")
     buy_item(item)
@@ -79,13 +82,19 @@ def open_shop():
 
 def start():
     print("----------------------------------------------------")
-    prompt1 = input("What do you want to do?\nA: Buy something, B: Work and get money: ")
+    prompt1 = input("What do you want to do?\nA: Buy something: \nB: Work and get money: \nC: See your inventory: ")
 
     if prompt1 == "A":
         open_shop()
 
     elif prompt1 == "B":
         job_prompt()
+
+    elif prompt1 == "C":
+        print("----------------------------------------------------")
+        print(*inventory, sep=",")
+        time.sleep(2)
+        start()
 
 start()
 
